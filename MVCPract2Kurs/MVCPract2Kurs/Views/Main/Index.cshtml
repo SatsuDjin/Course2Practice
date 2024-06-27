@@ -1,0 +1,29 @@
+﻿@using Application.DTOs
+@model IEnumerable<SpecializationViewModel>
+@{
+    ViewBag.Title = "Главная страница";
+}
+
+<h2>Специализации</h2>
+
+<form method="get" asp-action="Index">
+    <select name="cityId" onchange="this.form.submit()">
+        <option value="">Все города</option>
+        @foreach (var city in ViewBag.Cities)
+        {
+            <option value="@city.CityId" selected="@(city.CityId == ViewBag.SelectedCityId ? "selected" : null)">@city.Name</option>
+        }
+    </select>
+</form>
+
+<ul>
+    @foreach (var specialization in Model)
+    {
+        <li>
+            <a class="nav-link text-dark" asp-action="SpecializationDetails" asp-route-specializationId="@specialization.SpecializationId" asp-route-cityId="@(ViewBag.SelectedCityId ?? 0)">
+                @specialization.Name (@specialization.DoctorCount)
+            </a>
+        </li>
+    }
+</ul>
+

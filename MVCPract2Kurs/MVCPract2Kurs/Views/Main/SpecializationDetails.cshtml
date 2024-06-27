@@ -1,0 +1,32 @@
+﻿@using Application.DTOs
+@model IEnumerable<DoctorViewModel>
+@{
+    ViewBag.Title = "Врачи по специальности " + ViewBag.Specialization.Name;
+}
+
+<h2>Врачи по специальности @ViewBag.Specialization.Name</h2>
+
+<ul>
+    @foreach (var doctor in Model)
+    {
+        <li>
+            <img src="@Url.Content("~/images/" + doctor.Photo)" alt="@doctor.FullName" width="100" height="100" />
+            <h3>@doctor.FullName</h3>
+            <p>Дата рождения: @doctor.BirthDate.ToShortDateString()</p>
+            <p>Описание: @doctor.Description</p>
+            <p>Клиники: @string.Join(", ", doctor.AvailableClinics.Select(c => c.Name))</p>
+            <p>Специализации: @string.Join(", ", doctor.AvailableSpecializations.Select(s => s.Name))</p>
+        </li>
+    }
+</ul>
+
+<form method="get" asp-action="SpecializationDetails">
+    <input type="hidden" name="specializationId" value="@ViewBag.Specialization.SpecializationId" />
+    <select name="cityId" onchange="this.form.submit()">
+        <option value="">Все города</option>
+        @foreach (var city in ViewBag.Cities)
+        {
+            <option value="@city.CityId" selected="@(city.CityId == ViewBag.SelectedCityId ? "selected" : null)">@city.Name</option>
+        }
+    </select>
+</form>

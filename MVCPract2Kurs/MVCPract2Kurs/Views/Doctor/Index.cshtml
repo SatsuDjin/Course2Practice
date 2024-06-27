@@ -1,0 +1,31 @@
+﻿@using Domain.Entities
+@model IEnumerable<Doctor>
+
+<h2>Врачи</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Дата рождения</th>
+            <th>Описание</th>
+            <th>События</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doctor in Model)
+        {
+            <tr>
+                <td>@doctor.FullName</td>
+                <td>@doctor.BirthDate.ToShortDateString()</td>
+                <td>@doctor.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@doctor.DoctorId" class="btn btn-primary">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@doctor.DoctorId" class="btn btn-primary">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Создать</a>

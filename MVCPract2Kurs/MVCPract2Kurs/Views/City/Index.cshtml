@@ -1,0 +1,27 @@
+﻿@using Domain.Entities
+@model IEnumerable<City>
+
+<h2>Города</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>События</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var city in Model)
+        {
+            <tr>
+                <td>@city.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@city.CityId" class="btn btn-primary">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@city.CityId" class="btn btn-primary">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Создать</a>

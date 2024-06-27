@@ -1,0 +1,16 @@
+﻿@using Application.DTOs
+@model SpecializationViewModel
+
+<h2>Редактирование специальности</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="SpecializationId" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+

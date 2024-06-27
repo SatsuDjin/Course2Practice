@@ -1,0 +1,30 @@
+﻿@using Application.DTOs
+@model ResetPasswordViewModel
+
+<form asp-action="VerifyResetCode" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="ResetPasswordQuestion"></label>
+        <input asp-for="ResetPasswordQuestion" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="ResetPasswordAnswer"></label>
+        <input asp-for="ResetPasswordAnswer" class="form-control" />
+        <span asp-validation-for="ResetPasswordAnswer" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewPassword"></label>
+        <input asp-for="NewPassword" class="form-control" />
+        <span asp-validation-for="NewPassword" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Смена пароля</button>
+</form>

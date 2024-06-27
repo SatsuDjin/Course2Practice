@@ -1,0 +1,18 @@
+﻿@using Application.DTOs
+@model CityViewModel
+
+@{
+    ViewData["Title"] = "Создание города";
+}
+
+<h2>Создание города</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Создать</button>
+</form>
+
